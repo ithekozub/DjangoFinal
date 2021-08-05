@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список рассылок
+{% endblock title %}
+
+{% block content %}
+
+
+<form method="GET">
+    {{ filter.form }} <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти" class="btn btn-secondary">
+</form>
+    <br/><br/>
+    {% for mailing in filter.qs %}
+        {% if mailing.finished %}
+            <div class="container px-8 bg-success">
+        {% else %}
+            <div class="container px-8 bg-light">
+        {% endif %}
+                Создана {{ mailing.create_date|date:'d-M-Y H:m' }}<br/>
+                Тема рассылки <a href="{% url 'mailing_detail' mailing.id %}" >{{ mailing.subject|truncatechars:21 }}</a><br/>
+                Запланирована {{ mailing.sending_date|date:'d-M-Y H:m' }}
+                <a href="{% url 'mailing_update' mailing.id %}" class="btn btn-secondary">Редактировать</a>
+                <a href="{% url 'mailing_delete' mailing.id %}" class="btn btn-danger">Удалить</a>
+                Статус:
+                    {% if mailing.finished %}
+                        ЗАВЕРШЕНА
+                    {% else %}
+                        СОЗДАНА
+                    {% endif %}
+                <a href="{% url 'mailing_update' mailing.id %}" class="btn btn-secondary">Редактировать</a>
+                <a href="{% url 'mailing_delete' mailing.id %}" class="btn btn-danger">Удалить</a>
+            </div>
+
+{% if page_obj.has_other_pages %}
+{% if page_obj.has_previous %}
+<a href="?page=1">Первая</a>
+<a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+{% endif%}
+    {% for p in paginator.page_range %}
+        {% if page_obj.number == p %}
+            {{ p }}
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <a href="?page={{ p }}">{{ p }}</a>
+        {% endif %}
+
+
+    {% endfor %}
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+<a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+{% endif%}
+{% endif %}
+{% endfor %}
+{% endblock content %}

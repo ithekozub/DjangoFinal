@@ -1,0 +1,17 @@
+
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Здравствуй, <b>{{ username|title }}</b></p>
+<p><b>{{ post_author|title }}</b> принял твой отклик на объявление - <a href="{{ post_link }}">{{ title|truncatechars:20 }}...</a></p>
+
+</body>
+
+</html>

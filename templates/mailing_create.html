@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавление рассылку
+{% endblock title %}
+
+{% block content %}
+<br/>
+
+<h2>Добавить рассылку...</h2>
+
+    <br/>
+
+<div class="form-group">
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- Теперь нам нужна только готовая форма и кнопка -->
+
+    {{ form.media }}
+    <button class="btn btn-secondary">Добавить рассылку</button>
+    </form>
+
+</div>
+
+
+{% endblock content %}

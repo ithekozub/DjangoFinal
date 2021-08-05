@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+<h2>Отправьте отклик на объявление...</h2>
+    <br/>
+        <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+             <label for="comment">
+
+                <input name="comment" type="text" class="form-control">
+            </label>
+            <br/>
+            <button class="btn btn-secondary">Отправить отклик</button>
+        </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+
+
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Здравствуй, <b>{{ username|title }}</b></p>
+<p><b>{{ comment_author|title }}</b> оставил отклик на твое  объявление-<a href="{{ post_link }}">{{ title|truncatechars:21 }}...</a></p>
+<br/>
+<a style="text-align: left;" href="{{ comments_link }}" >Смотреть все отклики.<a/>
+
+
+</body>
+
+</html>

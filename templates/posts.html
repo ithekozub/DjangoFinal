@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title %}
+Объявления
+{% endblock title %}
+
+{% block content %}
+<h1>Объявления</h1>
+
+{% if posts %}
+
+<ul>
+        {% for post in posts %}
+            <div class="container">
+
+            <a href="{% url 'post_detail' post.id %}">{{ post.title}}</a>
+            - <a href="{% url 'category' post.category %}">{{ cat_names|get_item:post.category }}</a>
+            - {{ post.author.username }} -
+            {{ post.post_time }} <small>
+        {% if user.id == post.author.id %}
+            <a href="{% url 'post_update' post.id %}">Редактировать</a>
+            <a href="{% url 'post_delete' post.id %}">Удалить</a>
+        {% endif %}
+        </small>
+
+            </div>
+
+
+
+        {% endfor %}
+
+</ul>
+
+{% if page_obj.has_other_pages %}
+{% if page_obj.has_previous %}
+<a href="?page=1">Первая</a>
+<a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+{% endif%}
+    {% for p in paginator.page_range %}
+        {% if page_obj.number == p %}
+            {{ p }}
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <a href="?page={{ p }}">{{ p }}</a>
+        {% endif %}
+
+
+    {% endfor %}
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+<a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+{% endif%}
+{% endif %}
+
+{% else %}
+<h2>Объявлений нет</h2>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+
+<form method="GET">
+    {{ filter.form }} <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти" class="btn btn-secondary">
+</form>
+    <br/><br/>
+    {% for comment in filter.qs %}
+        <div class="container px-8">
+        {{ comment.comment_time|date:'d-M-Y H:m' }}<br/>
+        Сообщение: {{ comment.comment }}<br/>
+            От:{{ comment.user }}<br/>
+        Объявление: <a href="{% url 'post_detail' comment.post.id %}">{{ comment.post.title}}</a>
+            {% if not comment.accept %}
+                   <a href="{% url 'comment_accept' comment.id %}" class="btn btn-warning">Принять</a>
+            {% else %}
+                <a href="" class="btn btn-success">Принят</a>
+            {% endif %}
+        <a href="{% url 'comment_delete' comment.id %}" class="btn btn-danger">Удалить</a>
+        <br/>
+        </div>
+
+
+{% endfor %}
+{% endblock content %}
