@@ -43,12 +43,14 @@
               {% endfor %}
           </ul>
         </li>
+        {% if request.user|has_group:"staff" %}
                 <li class="nav-item">
                        <a class="nav-link" href="{% url 'mailing_create' %}">Добавить рассылку</a>
                 </li>
         <li class="nav-item">
                        <a class="nav-link" href="{% url 'mailing_list' %}">Список рассылок</a>
                 </li>
+        {% endif %}
 
             {% if user.is_authenticated %}
                 <li class="nav-item">
