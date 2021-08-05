@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title %}
+{{ mailing.subject }}
+{% endblock title %}
+
+{% block content %}
+
+    <br/>
+<h2>{{ mailing.subject}}</h2>
+<hr><br/>
+Добавлена: <b>{{ mailing.create_date|date:'d-M-Y H:m'  }}</b>
+    <div>{{ mailing.body|safe }}</div>
+    <br/><hr><br/>
+    Статус:
+    {% if mailing.finished %}
+        ЗАВЕРШЕНА
+    {% else %}
+        СОЗДАНА
+    {% endif %}
+    <a href="{% url 'mailing_update' mailing.id %}" class="btn btn-secondary">Редактировать</a>
+    <a href="{% url 'mailing_delete' mailing.id %}" class="btn btn-danger">Удалить</a>
+
+
+{% endblock content %}

@@ -14,6 +14,7 @@ class MailingCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     context_object_name = 'mailing'
     permission_required = ('mailing.add_mailing',)
     form_class = MailingForm
+    success_url = '/mailing/'
 
 
 class MailingUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -22,6 +23,7 @@ class MailingUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     context_object_name = 'mailing'
     permission_required = ('mailing.add_mailing',)
     form_class = MailingForm
+    success_url = '/mailing/'
 
 
 class MailingDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
@@ -38,9 +40,10 @@ class MailingDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     context_object_name = 'mailing'
     permission_required = ('mailing.add_mailing',)
     form_class = MailingForm
+    success_url = '/mailing/'
 
 
-class MailingListView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class MailingListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Mailing
     template_name = 'mailing_list.html'
     permission_required = ('mailing.add_mailing',)

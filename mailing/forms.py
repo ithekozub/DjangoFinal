@@ -8,11 +8,9 @@ class MailingForm(forms.ModelForm):
 
     class Meta:
         model = Mailing
-        fields = ('subject', 'body', 'recipients', 'sending_date')
+        fields = ('subject', 'body')
 
         widgets = {
             'subject': forms.TextInput(attrs={'class': 'form-control'}),
-            'recipients': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'sending_date': forms.DateTimeField(attrs={'class': 'form-control'}),
 
         }

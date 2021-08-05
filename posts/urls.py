@@ -1,7 +1,6 @@
 from django.urls import path
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, \
-    CategoryView, CommentCreateView, CommentListView, CommentAcceptView, CommentDeleteView
-from django.views.generic import TemplateView
+    CommentCreateView, CommentListView, CommentAcceptView, CommentDeleteView
 
 urlpatterns = [
     path('<int:pk>', PostDetailView.as_view(), name='post_detail'),

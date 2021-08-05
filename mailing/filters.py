@@ -9,7 +9,6 @@ class MailingFilter(FilterSet):
         fields = {
             'subject': ['icontains'],
             'body': ['icontains'],
-            'recipients': ['icontains'],
 
         }
 

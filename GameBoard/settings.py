@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'ckeditor',
-    'ckeditor_uploader'
-    'mailing'
+    'ckeditor_uploader',
+    'mailing.apps.MailingConfig',
 ]
 
 MIDDLEWARE = [
