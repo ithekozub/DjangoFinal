@@ -126,6 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_FORMS = {'signup': 'sign.forms.BasicSignupForm'}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
